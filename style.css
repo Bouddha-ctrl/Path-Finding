@@ -1,0 +1,44 @@
+.container1 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container1 .roww {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.squars {
+    color : black;
+    font-size: larger;
+    background-color: black;
+    border: solid 1px white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2px;
+    font-weight: bolder;
+    transition: all .5s ease;
+}
+
+.squars .squarshigh{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: smaller;
+    width: 100%;
+}
+
+.menu {
+    border : 1px solid black;
+    margin : 1% 3% 1% 3% ;
+    padding : 1%;
+}
+
