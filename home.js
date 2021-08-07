@@ -14,6 +14,7 @@ class Noeud {
 
 ///body
 const container1 = document.querySelector('.container1')
+var bounding = container1.getBoundingClientRect();
 
 var n = 10;
 var m = 20;
@@ -68,8 +69,9 @@ function draw() {
 
 }
 window.addEventListener('resize', () => {
-    container1.innerHTML = ""
-    draw()
+    container1.innerHTML = "";
+    //bounding = container1.getBoundingClientRect();
+    draw();
 })
 
 draw()
@@ -98,12 +100,13 @@ function clean(){
 
     //wall
     ListWall.forEach(noeud => {
-        addwall(noeud.x+"_"+noeud.y);
+        ListClose.push(noeud);
+        SUDOchangeColor(noeud,'gray');
     });
     
 }
 
-function directionChange(){
+function directionChange(){ //onchange
     const directionRadio = document.querySelector('input[name="directionRadio"]:checked').value; //heuristic function
     if (directionRadio=="0"){
         document.getElementById("flexRadioDefault9").checked = true;
@@ -251,7 +254,8 @@ function getpath(noeud,count = -1){
     
     setTimeout(function() { 
         if(noeud == null){
-            alert("Solution trouvé, le cout : "+fin.g+"\n nb de pas : "+count);
+            let nbN = ListClose.length - ListWall.length+1;
+            alert("Solution trouvé, le cout : "+fin.g+"\n Nombre de pas : "+count+"\n Nombre de noeud parcouru :"+nbN);
             return;
         }
         SUDOchangeColor(noeud,'purple');
@@ -283,11 +287,12 @@ function doAction(name){
         neighbour = neighbour_8way;
     }
 
-    const functionRadio = document.querySelector('input[name="functionRadio"]:checked').value; //search function
-    if (functionRadio=="astar") searchFunction=Astar;
-    else if (functionRadio=="BFS") searchFunction=BFS;
-    else if (functionRadio=="DFS") searchFunction=DFS;
-    else if (functionRadio=="greedy") searchFunction=greedy;
+    const functionSelect = document.getElementById("functionSelect").value; //search function
+    console.log(functionSelect);
+    if (functionSelect=="astar") searchFunction=Astar;
+    else if (functionSelect=="BFS") searchFunction=BFS;
+    else if (functionSelect=="DFS") searchFunction=DFS;
+    else if (functionSelect=="greedy") searchFunction=greedy;
 
     const heuristicRadio = document.querySelector('input[name="heuristicRadio"]:checked').value; //heuristic function
     if (heuristicRadio=="manhattan") Hfunction=Manhattan;
@@ -389,9 +394,9 @@ function Astar(name){
                         displayValue(noeud);
                     }                    
                 }else{
-                    ListOpen.reverse(); //push in the beginning
+
                     ListOpen.push(noeud);
-                    ListOpen.reverse();
+
                     changeColor(noeud,'green');
                     displayValue(noeud);
                 }
@@ -522,6 +527,7 @@ function neighbour_8way(N){
 
 
 function solve(){
+    console.log(ListWall);
     if(debut == null){
         var dx =  Math.floor(Math.random() * n);
         var dy =  Math.floor(Math.random() * m);
@@ -565,7 +571,6 @@ function solve(){
     }
 }
 
-
 //draw walls on draw
 var isMouseDown = false;
 document.onmousedown = function() { isMouseDown = true  };
@@ -573,6 +578,17 @@ document.onmouseup   = function() { isMouseDown = false };
 document.onmousemove = function(event) { if(isMouseDown) { 
     pointerX = event.pageX;
 	pointerY = event.pageY;
+    /* if(pointerX>bounding.x && pointerX<bounding.right && pointerY>bounding.y && pointerY<bounding.bottom){
+        console.log("hehe");
+    }
+    console.log(pointerY,bounding.y,bounding.bottom);*/
     document.elementFromPoint(event.pageX, event.pageY).click();
     } 
 };
+
+function draw_maze(){
+    debut = new Noeud(7,3);
+    fin = new Noeud(3,10);
+    clean();
+
+}

@@ -10,102 +10,125 @@
 </head>
 
 <body>
-    <div class="menu">
-        <div class="row">
-            <div class="col-sm-5">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Draw wall :</label>
-                    <div class="form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="wallCheck">
-                        <label class="form-check-label" for="flexCheckChecked">
-                            wall
-                        </label>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- body -->
+                    <div class="menu">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Draw wall :</label>
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" value="" id="wallCheck">
+                                        <label class="form-check-label" for="flexCheckChecked">
+                                            wall
+                                        </label>
+                                    </div>
+                                
+                            </div>
+                            <div class="col">
+                                <label for="inputPassword" class="col-sm-2 col-form-label">Show :</label>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="valuesCheck">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        value
+                                    </label>
+                                    <input class="form-check-input" type="checkbox" value="" id="colorCheck" checked>
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        color
+                                    </label>
+                                </div>
+                                
+                            </div>
+                            <div class="col">
+                                Search function : 
+                                <select id="functionSelect">
+                                    <option value="astar">A*</option>
+                                    <option value="BFS">BFS</option>
+                                    <option value="DFS">DFS</option>
+                                    <option value="greedy">Greedy</option>
+                                </select>
+                            </div>        
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <label  class="col-sm-2 col-form-label">Action :</label>
+                                <button id="reset" class="btn btn-secondary" onclick="clean()">Clear</button>
+                                <button id="reset" class="btn btn-secondary" onclick="reset()">Reset</button>
+                            </div>
+                            <div class="col">
+                                directions :
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" onclick="directionChange()"  type="radio" name="directionRadio" id="flexRadioDefault3" value="0" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1"></label>
+                                        4 directions
+                                    </label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" onclick="directionChange()" type="radio" name="directionRadio" id="flexRadioDefault4" value="1" >
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        8 directions
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col">
+                                Heuristic H: 
+                                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault9" value="manhattan" checked> Manhattan
+                                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault10" value="shortest" disabled> Shortest
+                            </div>        
+                
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-5">
+                                
+                            </div>
+                            <div class="col">
+                                <div class="row ps-2">
+                                    Grid :
+                                    <div class="col-sm-3"><input class="form-control" onchange="changeX()" type="number" name="x" id="x" value="10"></div>
+                                    <div class="col-sm-3"><input class="form-control" onchange="changeY()" type="number" name="y" id="y" value="20"></div>
+                                </div>
+                                    
+                            </div>
+                            <div class="col">
+                                <button class="btn btn-primary" onclick="draw_maze()" >Draw maze</button>
+                            </div>        
+                        </div>
+                
                     </div>
-                
-            </div>
-            <div class="col">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Show :</label>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="valuesCheck">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        value
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="colorCheck" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        color
-                    </label>
-                </div>
-                
-            </div>
-            <div class="col">
-                Search function : 
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault5" value="astar" checked>A*
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault6" value="BFS" > BFS
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault7" value="DFS" > DFS
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault8" value="greedy" > Greedy
 
-            </div>        
+                    <!-- body -->
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <label  class="col-sm-2 col-form-label">Action :</label>
-                <button id="reset" class="btn btn-secondary" onclick="clean()">Clear</button>
-                <button id="reset" class="btn btn-secondary" onclick="reset()">Reset</button>
-
-            </div>
-            <div class="col">
-                directions :
-                <div class="form-check-inline">
-                    <input class="form-check-input" onclick="directionChange()"  type="radio" name="directionRadio" id="flexRadioDefault3" value="0" checked>
-                    <label class="form-check-label" for="flexRadioDefault1"></label>
-                        4 directions
-                    </label>
-                </div>
-                <div class="form-check-inline">
-                    <input class="form-check-input" onclick="directionChange()" type="radio" name="directionRadio" id="flexRadioDefault4" value="1" >
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        8 directions
-                    </label>
-                </div>
-            </div>
-            <div class="col">
-                Heuristic H: 
-                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault9" value="manhattan" checked> Manhattan
-                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault10" value="shortest" disabled> Shortest
-            </div>        
-
-        </div>
-        <div class="row">
-            <div class="col-sm-5">
-                <label  class="col-sm-3 col-form-label">Find the path :</label>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="findRadio" id="flexRadioDefault1" value="0" checked>
-                    <label class="form-check-label" for="flexRadioDefault1"></label>
-                        Step by step
-                    </label>
-                </div>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="radio" name="findRadio" id="flexRadioDefault2" value="1">
-                    <label class="form-check-label" for="flexRadioDefault2">
-                        All
-                    </label>
-                </div>
-                <button id="solve" class="btn btn-primary" onclick="solve()" >Find</button>
-                
-            </div>
-            <div class="col">
-                <div class="row ps-2">
-                    Grid :
-                    <div class="col-sm-3"><input class="form-control" onchange="changeX()" type="number" name="x" id="x" value="10"></div>
-                    <div class="col-sm-3"><input class="form-control" onchange="changeY()" type="number" name="y" id="y" value="20"></div>
-                </div>
-                    
-            </div>
-            <div class="col"></div>        
-        </div>
-
     </div>
-
-    <div class="container1">
+    <label  class="col col-form-label">Find the path :</label>
+    <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="findRadio" id="flexRadioDefault1" value="0" checked>
+        <label class="form-check-label" for="flexRadioDefault1"></label>
+            Step by step
+        </label>
+    </div>
+    <div class="form-check-inline">
+        <input class="form-check-input" type="radio" name="findRadio" id="flexRadioDefault2" value="1">
+        <label class="form-check-label" for="flexRadioDefault2">
+            All
+        </label>
+    </div>
+    <button id="solve" class="btn btn-primary" onclick="solve()" >Find</button>
+                                
+    <div class="container1 disableselect">
 
     </div>
     <script src="home.js"></script>
