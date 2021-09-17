@@ -12,45 +12,42 @@
 <body>
     <div class="menu">
         <div class="row">
-            <div class="col-sm-5">
-                <label for="inputPassword" class="col-sm-2 col-form-label">Draw wall :</label>
+            <div class="col">
+                <label for="inputPassword" class="col col-form-label">Draw wall :</label>
                     <div class="form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="wallCheck">
                         <label class="form-check-label" for="flexCheckChecked">
                             wall
                         </label>
                     </div>
-                
+
             </div>
             <div class="col">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Show :</label>
-                <div class="form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="" id="valuesCheck">
-                    <label class="form-check-label" for="flexCheckChecked">
-                        value
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="colorCheck" checked>
-                    <label class="form-check-label" for="flexCheckChecked">
-                        color
-                    </label>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic checkbox toggle button group">
+                    <input type="checkbox" class="btn-check" id="valuesCheck" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="valuesCheck">Value</label>
+
+                    <input type="checkbox" class="btn-check" id="colorCheck" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="colorCheck">Color</label>
                 </div>
-                
+
             </div>
             <div class="col">
                 Search function : 
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault5" value="astar" checked>A*
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault6" value="BFS" > BFS
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault7" value="DFS" > DFS
-                <input class="form-check-input" type="radio" name="functionRadio" id="flexRadioDefault8" value="greedy" > Greedy
-
+                <select id="functionSelect">
+                    <option value="astar">A*</option>
+                    <option value="BFS">BFS</option>
+                    <option value="DFS">DFS</option>
+                    <option value="greedy">Greedy</option>
+                </select>
             </div>        
         </div>
         <div class="row">
-            <div class="col-sm-5">
+            <div class="col">
                 <label  class="col-sm-2 col-form-label">Action :</label>
-                <button id="reset" class="btn btn-secondary" onclick="clean()">Clear</button>
-                <button id="reset" class="btn btn-secondary" onclick="reset()">Reset</button>
-
+                <button id="reset" class="btn btn-secondary btn-sm" onclick="clean()">Clear</button>
+                <button id="reset" class="btn btn-secondary btn-sm" onclick="reset()">Reset</button>
             </div>
             <div class="col">
                 directions :
@@ -69,14 +66,19 @@
             </div>
             <div class="col">
                 Heuristic H: 
-                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault9" value="manhattan" checked> Manhattan
-                <input class="form-check-input" type="radio" name="heuristicRadio" id="flexRadioDefault10" value="shortest" disabled> Shortest
-            </div>        
 
+                <div class="btn-group btn-group-sm px-2" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="heuristicRadio" id="flexRadioDefault9" value="manhattan" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="flexRadioDefault9">Manhattan</label>
+                
+                    <input type="radio" class="btn-check" name="heuristicRadio" id="flexRadioDefault10" value="shortest" autocomplete="off" disabled>
+                    <label class="btn btn-outline-primary" for="flexRadioDefault10">Shortest</label>
+                </div>
+            </div>
         </div>
         <div class="row">
-            <div class="col-sm-5">
-                <label  class="col-sm-3 col-form-label">Find the path :</label>
+            <div class="col">
+                <label  class="col col-form-label">Find the path :</label>
                 <div class="form-check-inline">
                     <input class="form-check-input" type="radio" name="findRadio" id="flexRadioDefault1" value="0" checked>
                     <label class="form-check-label" for="flexRadioDefault1"></label>
@@ -89,26 +91,37 @@
                         All
                     </label>
                 </div>
-                <button id="solve" class="btn btn-primary" onclick="solve()" >Find</button>
-                
+                <button id="solve" class="btn btn-primary " onclick="solve()" >Find</button>
             </div>
             <div class="col">
                 <div class="row ps-2">
                     Grid :
-                    <div class="col-sm-3"><input class="form-control" onchange="changeX()" type="number" name="x" id="x" value="10"></div>
-                    <div class="col-sm-3"><input class="form-control" onchange="changeY()" type="number" name="y" id="y" value="20"></div>
+                    <div class="col-sm-3"><input class="form-control" onchange="changeX()" type="number" name="x" id="x" ></div>
+                    <div class="col-sm-3"><input class="form-control" onchange="changeY()" type="number" name="y" id="y" ></div>
                 </div>
-                    
+
             </div>
-            <div class="col"></div>        
+            <div class="col">
+                Maze :
+                <select>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <button class="btn btn-primary btn-sm" onclick="draw_maze()" >Draw maze</button>
+            </div>        
         </div>
 
     </div>
 
-    <div class="container1">
+    <div class="container1 disableselect">
 
     </div>
-    <script src="home.js"></script>
+
+    <footer class="">
+        <p class="text-center text-muted">© 2021 <a target="_blank" class="nodecoration" href="https://www.linkedin.com/in/mohamed-miri/">Mohamed MIRI</a> - <a target="_blank" class="nodecoration" href="https://github.com/Bouddha-ctrl/Path-Finding">GitHub</a></p>
+    </footer>
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>

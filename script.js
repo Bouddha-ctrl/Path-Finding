@@ -17,6 +17,8 @@ const container1 = document.querySelector('.container1')
 
 var n = 10;
 var m = 20;
+document.getElementById("x").value = n
+document.getElementById("y").value = m
 
 function changeX(){
     let x = document.getElementById('x').value;
@@ -39,7 +41,7 @@ function grid(){
 }
 
 function draw() {
-    let min = Math.min(innerWidth / (m + 1), innerHeight / (n + 1))
+    let min = Math.min(container1.clientWidth / (m + 1), container1.clientHeight / (n + 1))
     for (let i = 0; i < n; i++) {
         let row = document.createElement('div')
         row.setAttribute("class", "roww")
