@@ -285,11 +285,11 @@ function doAction(name){
         neighbour = neighbour_8way;
     }
 
-    const functionRadio = document.querySelector('input[name="functionRadio"]:checked').value; //search function
-    if (functionRadio=="astar") searchFunction=Astar;
-    else if (functionRadio=="BFS") searchFunction=BFS;
-    else if (functionRadio=="DFS") searchFunction=DFS;
-    else if (functionRadio=="greedy") searchFunction=greedy;
+    const functionSelect = document.getElementById("functionSelect").value; //search function
+    if (functionSelect=="astar") searchFunction=Astar;
+    else if (functionSelect=="BFS") searchFunction=BFS;
+    else if (functionSelect=="DFS") searchFunction=DFS;
+    else if (functionSelect=="greedy") searchFunction=greedy;
 
     const heuristicRadio = document.querySelector('input[name="heuristicRadio"]:checked').value; //heuristic function
     if (heuristicRadio=="manhattan") Hfunction=Manhattan;
