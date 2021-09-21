@@ -15,8 +15,8 @@ class Noeud {
 ///body
 const container1 = document.querySelector('.container1')
 
-var n = 10;
-var m = 20;
+var n = 12;
+var m = 24;
 document.getElementById("x").value = n
 document.getElementById("y").value = m
 
@@ -143,6 +143,7 @@ var colorCheck = true;
 var neighbour ;
 var searchFunction;
 var Hfunction ;
+var mazeNumber = 1;
 
 var debut = null;
 var fin = null;
@@ -477,10 +478,7 @@ function DFS(name){
                     noeud.g=current.g+1*multiplier;
                 }
                 
-                
-                ListOpen.reverse(); //push in the beginning
-                ListOpen.push(noeud);
-                ListOpen.reverse();
+                ListOpen.unshift(noeud) //push in the beginning
                 changeColor(noeud,'green');
                 displayValue(noeud);
                 
@@ -568,13 +566,50 @@ function solve(){
 }
 
 
-//draw walls on draw
+//draw walls on draw , click and drag
 var isMouseDown = false;
 document.onmousedown = function() { isMouseDown = true  };
 document.onmouseup   = function() { isMouseDown = false };
 document.onmousemove = function(event) { if(isMouseDown) { 
     pointerX = event.pageX;
 	pointerY = event.pageY;
-    document.elementFromPoint(event.pageX, event.pageY).click();
+    let rect = container1.getBoundingClientRect();
+
+    if (pointerY > rect.y && pointerY < rect.bottom) 
+        document.elementFromPoint(event.pageX, event.pageY).click();
     } 
 };
+
+
+
+//Maze 
+
+var maze1 = ["2_5","3_5","9_5","8_5","10_3","10_4","10_5","10_6","10_7","10_8","10_9","10_10","10_11","10_12","10_13","10_14","10_15","10_16","10_17","10_2","9_2","8_2","7_2","6_2","5_2","4_2","3_2","2_2","1_2","1_3","1_4","1_5","1_6","1_7","1_8","1_9","1_10","1_11","1_12","1_13","1_14","1_15","1_16","1_17","1_18","1_19","1_20","1_21","1_22","2_22","3_22","4_22","5_22","6_22","7_22","8_22","9_22","10_22","10_21","10_20","10_19","10_18","7_10","7_9","7_8","6_8","5_8","4_8","4_9","4_10","4_14","4_15","4_16","3_16","2_16","7_14","7_15","7_16","8_16","9_16","4_19","5_19","6_19","7_19"]
+var Maze = [maze1]
+
+
+function draw_maze(){
+    mazeNumber = document.getElementById("mazeNumber").value;
+
+    container1.innerHTML = ""
+    draw()
+    ListClose = []
+    ListOpen = []
+    ListWall = []
+
+    editable = true;
+    solutionFound =  false ;
+    valuesCheck = true;
+    colorCheck = true;
+
+    debut = null;
+    fin = null;
+
+    Maze[mazeNumber-1].forEach(name => {
+        let noeud = buildNoeud(name);
+        SUDOchangeColor(noeud, 'gray');
+        ListWall.push(noeud);
+        ListClose.push(noeud);
+
+    });
+}
