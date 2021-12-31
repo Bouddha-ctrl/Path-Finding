@@ -80,6 +80,8 @@ function reset(){
 }
 
 function clean(){
+    let deb1 = null
+    let fin1 = null
     container1.innerHTML = ""
     draw()
     ListClose = []
@@ -89,10 +91,12 @@ function clean(){
     solutionFound =  false ;
     valuesCheck = true;
     colorCheck = true;
-
-
-    let deb1 = new Noeud(debut.x,debut.y);
-    let fin1 = new Noeud(fin.x,fin.y);
+    
+    if (debut!= null && fin!=null){
+        deb1 = new Noeud(debut.x,debut.y);
+        fin1 = new Noeud(fin.x,fin.y);
+        
+    }
     debut = null;
     fin = null;
     clickonsquare(deb1);
@@ -116,6 +120,7 @@ function directionChange(){
     }
 }
 function clickonsquare(noeud){
+    if (noeud == null) return;
     let id = noeud.x*m+noeud.y+1;
     let h = document.getElementById(id);
     h.click();
